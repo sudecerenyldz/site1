@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+      <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;700&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+
+    
+    <style>
+
+@media (max-width: 991.98px) {
+    .sidebar-right {
+        position: static;   /* sticky kapansın */
+        margin: 20px auto;  /* ortalansın */
+        width: 100%;
+        max-width: 400px;   /* çok geniş durmasın */
+    }
+}
+
+
+      /* SADECE SAĞ ALAN */
+        .sidebar-right {
+            width: 285px;
+            min-width: 285px;
+            position: sticky;
+            top: 20px;
+            background: #fff;
+            border-radius: 15px;
+            border: 1px solid #edf2f7;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .vs-label {
+            font-size: 0.7rem;
+            letter-spacing: 0.5px;
+            color: #004274;
+            font-weight: 700;
+            text-transform: uppercase;
+            display: block;
+            margin-top: 10px;
+        }
+
+        .vs-value {
+            font-size: 0.85rem;
+            font-weight: 500;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .city-list-box {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 10px;
+            line-height: 1.5;
+            color: #718096;
+            margin: 10px 0;
+        }
+
+        .btn-vision-main {
+            background-color: #004274;
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 12px;
+        }
+
+        .btn-download {
+            background: #fff;
+            border: 1px solid #dee2e6;
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 11px;
+            color: #4a5568;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            .custom-container {
+            max-width: 855px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+
+        .section-title {
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #0d6efd;
+            border-bottom: 2px solid #0d6efd;
+            display: inline-block;
+            padding-bottom: 5px;
+            margin-bottom: 30px;
+            font-size: 1.4rem;
+        }
+
+        /* KART TASARIMI */
+        .card-step {
+            border: 1px solid #e0e0e0 !important;
+            border-radius: 4px !important;
+            height: 100%;
+            padding: 40px 25px;
+            background: #fff;
+            text-align: center;
+            transition: 0.3s ease-in-out;
+        }
+
+        /* İkon Kutusu: Görseldeki dairesel yapı */
+        .icon-box {
+            width: 110px;
+            height: 110px;
+            border: 1.5px solid #e0e0e0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+
+        .icon-box i { font-size: 45px; color: #007bff; }
+
+        .step-title {
+            font-weight: 700;
+            color: #007bff;
+            text-transform: uppercase;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        .step-desc {
+            font-size: 13px;
+            color: #444;
+            line-height: 1.6;
+        }
+
+        /* ALT BANNER: 660x207 */
+        .footer-img {
+            width: 660px;
+            height: 207px;
+            object-fit: contain; /* Resmin oranını bozmaz */
+            margin-top: 40px;
+        }
+
+    .timeline-container {
+      max-width: 855px;
+      margin: 0 auto;
+      padding: 40px 15px;
+      position: relative;
+    }
+
+    .timeline-line {
+      position: absolute;
+      left: 50%;
+      top: 0; 
+      bottom: 0;
+      width: 3px;
+      background-color: #0000FF;
+      transform: translateX(-50%);
+      z-index: 1;
+    }
+
+    .timeline-row {
+      position: relative;
+      margin-bottom: 40px; /* Görseldeki gibi daha sık bir dizilim */
+    }
+
+    .content-box {
+      max-width: 363px;
+      background-color: white;
+      border-radius: 12px;
+      border: 1px solid #f1f1f1;
+      padding: 15px 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      position: relative;
+      z-index: 2;
+    }
+
+    .content-box p {
+      margin: 0;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: #555;
+    }
+
+    @media (max-width: 767px) {
+      .timeline-line { left: 20px; }
+      .timeline-row { flex-direction: column !important; }
+      .timeline-row .content-box { margin-left: 50px !important; text-align: left !important; max-width: 100%; }
+    }
+  
+      .ust-ana-alan {
+        max-width: 1450px;
+        height: 550px;
+        border-radius: 40px;
+        background-image:
+          linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
+          url("https://images.pexels.com/photos/9690304/pexels-photo-9690304.jpeg");
+        background-size: cover;
+        background-position: center;
+        box-shadow: 0 15px 45px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+        max-width: 96%; /* %100 yaparsan hiç boşluk kalmaz, %96 idealdir */
+        margin: 0 auto; /* Kartı ortalar */
+      }
+
+      .sol-mavi-panel {
+        width: 400px;
+
+        background: rgba(13, 13, 53, 0.4);
+
+        backdrop-filter: blur(2px);
+        -webkit-backdrop-filter: blur(4px);
+      }
+
+      .form-ic-kapsayici {
+        width: 350px;
+      }
+
+      .find-btn {
+        background: #ffc107;
+        color: #0d0d35;
+        border-radius: 12px;
+        font-weight: 800;
+      }
+
+      /* === PRICE SLIDER (Bootstrap ile yapılamayan kısım) === */
+      .slider-track {
+        height: 6px;
+        background: #007bff;
+        border-radius: 10px;
+        position: relative;
+      }
+
+      .range-min,
+      .range-max {
+        position: absolute;
+        top: -6px;
+        width: 100%;
+        pointer-events: none;
+        background: none;
+      }
+
+      .range-min::-webkit-slider-thumb,
+      .range-max::-webkit-slider-thumb {
+        pointer-events: auto;
+        appearance: none;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: #fff;
+        border: 3px solid #007bff;
+        cursor: pointer;
+      }
+
+      .slider-track::before {
+        content: "";
+        position: absolute;
+        height: 6px;
+        background: #fff;
+        left: var(--left);
+        right: var(--right);
+        border-radius: 10px;
+      }
+
+      .range-min::-webkit-slider-runnable-track,
+      .range-max::-webkit-slider-runnable-track {
+        background: transparent;
+      }
+
+      .range-min::-moz-range-track,
+      .range-max::-moz-range-track {
+        background: transparent;
+      }
+
+      .form-select,
+      .form-control {
+        border-radius: 6px !important;
+        border: none !important;
+        padding: 10px 15px !important;
+        height: auto !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+        font-size: 0.9rem !important;
+      }
+
+      /* Tıklayınca çıkan mavi çerçeveyi de modernleştirelim */
+      .form-select:focus,
+      .form-control:focus {
+        box-shadow: 0 0 0 2px rgba(255, 193, 7, 0.5) !important;
+        outline: none !important;
+      }
+        /* Ana Taşıyıcı: İçeriği görseldeki gibi sınırlı tutar */
+        .content-wrapper {
+            max-width: 950px;
+            margin: 0 auto;
+            padding: 40px 15px;
+        }
+
+        /* Başlık Stili: Citizenship başlığıyla aynı hizada ve ölçüde */
+        .section-title {
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #0d6efd; 
+            border-bottom: 3px solid #0d6efd;
+            display: inline-block;
+            padding-bottom: 2px;
+            margin-bottom: 35px;
+            font-size: 24px;
+            letter-spacing: 0.5px;
+        }
+
+         .content-wrapper {
+      max-width: 950px;
+      margin: 0 auto;
+      padding: 40px 15px;
+    }
+
+    .section-title {
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #0d6efd;
+      border-bottom: 3px solid #0d6efd;
+      display: inline-block;
+      padding-bottom: 2px;
+      margin-bottom: 35px;
+      font-size: 24px;
+      letter-spacing: 0.5px;
+    }
+
+    .card-investment {
+      border: 1px solid #e0e0e0 !important;
+      border-radius: 12px !important;
+      height: 100%;
+      padding: 30px 20px;
+      transition: all 0.3s ease;
+      background-color: #fff;
+    }
+
+    .icon-circle-box {
+      width: 70px;
+      height: 70px;
+      border: 1.5px solid #0d6efd;
+      border-radius: 50%;
+      margin-bottom: 15px;
+      transition: 0.3s ease;
+    }
+
+    .investment-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #212529;
+      margin-bottom: 5px;
+      line-height: 1.3;
+    }
+
+    .condition-text {
+      color: #0d6efd;
+      font-size: 12px;
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    .card-investment:hover {
+      border-color: #0d6efd !important;
+      box-shadow: 0 10px 20px rgba(13, 110, 253, 0.08);
+      transform: translateY(-2px);
+    }
+
+    .card-investment:hover .icon-circle-box {
+      background-color: #0d6efd;
+    }
+
+    .card-investment:hover .icon-circle-box i {
+      color: #ffffff !important;
+    }
+
+    .custom-gutter {
+      --bs-gutter-x: 1.5rem;
+      --bs-gutter-y: 1.5rem;
+    }
+
+        .condition-text {
+            color: #0d6efd;
+            font-size: 12px;
+            font-style: italic;
+            font-weight: 400;
+        }
+
+        /* Hover Efektleri */
+        .card-investment:hover {
+            border-color: #0d6efd !important;
+            box-shadow: 0 10px 20px rgba(13, 110, 253, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .card-investment:hover .icon-circle-box {
+            background-color: #0d6efd;
+        }
+
+        .card-investment:hover .icon-circle-box i {
+            color: #ffffff !important;
+        }
+
+        /* Bootstrap Gutter (Boşluk) Ayarı */
+        .custom-gutter {
+            --bs-gutter-x: 1.5rem;
+            --bs-gutter-y: 1.5rem;
+        }
+    </style>
+
+<body>
+     <body class="bg-light">
+    <div class="container-fluid px-1 mt-4">
+      <div class="ust-ana-alan mx-auto d-flex">
+        <!-- SOL PANEL -->
+        <div
+          class="sol-mavi-panel d-flex align-items-center justify-content-center"
+        >
+          <div class="form-ic-kapsayici text-white">
+            <h2 class="fw-bold mb-1">Find Your Ideal</h2>
+            <p class="opacity-75 mb-3">Home & Investment</p>
+
+            <div class="form-check mb-1">
+              <input class="form-check-input" type="checkbox" />
+              <label class="form-check-label small">New Build Only</label>
+            </div>
+
+            <div class="form-check mb-1">
+              <input class="form-check-input" type="checkbox" />
+              <label class="form-check-label small">Resale Only</label>
+            </div>
+
+            <div class="form-check mb-1">
+              <input class="form-check-input" type="checkbox" />
+              <label class="form-check-label small">Custom Build Only</label>
+            </div>
+
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" />
+              <label class="form-check-label small text-warning fw-semibold">
+                Only show listings with A Video Tour
+              </label>
+            </div>
+
+            <select class="form-select form-select-sm rounded-pill mb-2">
+              <option>Select City</option>
+            </select>
+
+            <select class="form-select form-select-sm rounded-pill mb-2">
+              <option>Select Type</option>
+            </select>
+
+            <select class="form-select form-select-sm rounded-pill mb-2">
+              <option>No min beds</option>
+            </select>
+
+            <input
+              type="text"
+              class="form-control form-control-sm rounded-pill mb-3"
+              placeholder="Project Name"
+            />
+
+            <!-- PRICE RANGE -->
+            <div class="small fw-semibold mb-1">
+              Price range : € 110,000 - € 470,000
+            </div>
+
+            <div class="d-flex justify-content-between small fw-semibold mb-1">
+              <span id="minVal">€110,000</span>
+              <span id="maxVal">€470,000</span>
+            </div>
+
+            <div class="slider-track mb-3 position-relative">
+              <input
+                type="range"
+                class="form-range range-min"
+                min="110000"
+                max="470000"
+                step="1000"
+                value="110000"
+              />
+              <input
+                type="range"
+                class="form-range range-max"
+                min="110000"
+                max="470000"
+                step="1000"
+                value="470000"
+              />
+            </div>
+
+            <button class="btn find-btn w-100 py-2">Find Properties</button>
+          </div>
+        </div>
+
+        <!-- SAĞ BAŞLIK -->
+        <div
+          class="flex-fill d-flex align-items-center justify-content-center text-center"
+        >
+          <h1 class="text-white fw-bold display-4 px-4">
+            Citizenship Types in Turkey
+          </h1>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const minRange = document.querySelector(".range-min");
+      const maxRange = document.querySelector(".range-max");
+      const minVal = document.getElementById("minVal");
+      const maxVal = document.getElementById("maxVal");
+      const track = document.querySelector(".slider-track");
+
+      const minLimit = 110000;
+      const maxLimit = 470000;
+      const gap = 1000;
+
+      function updateSlider() {
+        let min = parseInt(minRange.value);
+        let max = parseInt(maxRange.value);
+
+        if (max - min <= gap) {
+          if (this === minRange) minRange.value = max - gap;
+          else maxRange.value = min + gap;
+        }
+
+        minVal.textContent = "€" + min.toLocaleString();
+        maxVal.textContent = "€" + max.toLocaleString();
+
+        let left = ((min - minLimit) / (maxLimit - minLimit)) * 100;
+        let right = 100 - ((max - minLimit) / (maxLimit - minLimit)) * 100;
+
+        track.style.setProperty("--left", left + "%");
+        track.style.setProperty("--right", right + "%");
+      }
+
+      minRange.addEventListener("input", updateSlider);
+      maxRange.addEventListener("input", updateSlider);
+      updateSlider();
+    </script>
+    <div class="float-lg-end ms-lg-4 mt-4">
+
+    <div class="sidebar-right">
+
+        <h5 class="text-center fw-bold pb-3 mb-3 border-bottom border-primary border-2" style="color:#004274;">
+            TURKEY BRIEF
+        </h5>
+
+        <div class="text-center">
+
+            <img src="images/turkey-in-bief-map(1).png"
+                 style="width:180px;height:138px;object-fit:contain;margin-bottom:15px;" alt="Turkey">
+
+            <span class="vs-label">Population</span>
+            <span class="vs-value">83,154</span>
+
+            <span class="vs-label">Population Growth</span>
+            <span class="vs-value">1.39</span>
+
+            <span class="vs-label">GDP (Per Capita)</span>
+            <span class="vs-value">10.000$</span>
+
+            <span class="vs-label">GDP (PPP)</span>
+            <span class="vs-value">780.000 Billion $</span>
+
+            <span class="vs-label">GDP Rank</span>
+            <span class="vs-value">19</span>
+
+            <span class="vs-label">Visa Free Countries</span>
+            <span class="vs-value">121</span>
+
+            <span class="vs-label">Capital</span>
+            <span class="vs-value">ANKARA : 5,504</span>
+
+            <span class="vs-label">Population In Other Cities</span>
+            <div class="city-list-box text-start">
+                ISTANBUL : 15,520 M<br>
+                IZMIR : 4,321 M<br>
+                ANTALYA : 2,426 M<br>
+                BURSA : 2,995 M<br>
+                KONYA : 2,236 M<br>
+                ADANA : 2,220 M<br>
+                MERSIN : 1,814 M
+            </div>
+
+            <span class="vs-label">Difference</span>
+            <span class="vs-value">GMT +3</span>
+
+            <span class="vs-label">Total Area</span>
+            <span class="vs-value">783.562 km²</span>
+
+            <span class="vs-label">Dual Citizenship</span>
+            <span class="vs-value">PERMITTED</span>
+
+            <span class="vs-label">Health System</span>
+            <p style="font-size:10px;text-align:justify;line-height:1.3;color:#718096;">
+                Turkey has universal healthcare under GSS. All residents registered with SGK receive free medical treatment.
+            </p>
+
+            <img src="images/vision-brosure.png"
+                 style="width:225px;height:158px;object-fit:cover;border-radius:10px;border:1px solid #edf2f7;margin:15px 0;">
+
+            <button class="btn-download shadow-sm">DOWNLOAD OUR BROCHURE</button>
+
+            <p class="mt-2 mb-1" style="font-size:10px;font-style:italic;">
+                Need for information?
+            </p>
+
+            <button class="btn-vision-main shadow">CONTACT US</button>
+
+        </div>
+    </div>
+</div>
+
+    <div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-9">
+
+            <div class="p-4 mb-5 rounded-3 shadow-sm" style="background-color: #2b3e5a; border-left: 6px solid #ffc107;">
+                <p class="text-white mb-0 fs-6">
+                    Turkish official gazette (10.09.2018) states that any foreigner purchasing or owning real estate of a required value in Turkey is now eligible for Turkish Citizenship. 
+                    <br><br>
+                    <span style="color: #ffc107; font-weight: 700;">Starting from 12.06.2022, the required value of the property will be 400,000 USD.</span>
+                </p>
+            </div>
+
+            <h2 class="fw-bold mb-4" style="color: #00548b; letter-spacing: -0.5px;">
+                CITIZENSHIP TYPES IN TURKEY
+            </h2>
+
+            <div class="mt-4">
+                
+                <div class="mb-4">
+                    <h5 class="fw-bold text-uppercase" style="color: #00548b; font-size: 1.1rem;">MARRIAGE</h5>
+                    <p class="text-secondary">Foreigners can obtain citizenship after 3 years of marriage to a Turkish national. Certain conditions apply eg posing no threat to national security or public order.</p>
+                </div>
+
+                <div class="mb-4">
+                    <h5 class="fw-bold text-uppercase" style="color: #00548b; font-size: 1.1rem;">PROPERTY AND RESIDENCE PERMIT HOLDERS</h5>
+                    <p class="text-secondary">Any property owner in Turkey who has lived in the country for a straight, uninterrupted period of 5 years (article 11 of Act 3901) can apply.</p>
+                </div>
+
+                <div class="mb-4">
+                    <h5 class="fw-bold text-uppercase" style="color: #00548b; font-size: 1.1rem;">
+                        THE TURQUOISE SYSTEM <small class="fw-normal" style="color: #ffc107; font-size: 0.8rem;">(2017)</small>
+                    </h5>
+                    <p class="text-secondary">This allows people who have skills or attributes in technology, economics, sports, culture and arts to apply for an alternative type of citizenship.</p>
+                </div>
+
+                <div class="mb-4">
+                    <h5 class="fw-bold text-uppercase" style="color: #00548b; font-size: 1.1rem;">CITIZENSHIP BY INVESTMENT</h5>
+                    <p class="text-secondary">
+                        People who have bought a property worth at least 
+                        <span class="fw-bold" style="color: #00548b;">400,000 USD</span> or deposited 500,000 USD in Turkish banks are eligible to apply.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="container">
+  <div class="content-wrapper">
+
+    <!-- Başlık -->
+    <div class="row">
+      <div class="col-12">
+        <h2 class="section-title">INVESTMENT OPTIONS</h2>
+      </div>
+    </div>
+
+    <!-- Kartlar -->
+    <div class="row custom-gutter">
+      
+      <div class="col-md-6">
+        <div class="card card-investment d-flex flex-column align-items-center justify-content-center text-center">
+          <div class="icon-circle-box d-flex align-items-center justify-content-center">
+            <i class="fa-solid fa-house-chimney fs-4 text-primary"></i>
+          </div>
+          <div class="investment-title">Buy Properties Worth 400.000 USD</div>
+          <div class="condition-text">
+            * with a deed restriction not to sell for 3 years
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="card card-investment d-flex flex-column align-items-center justify-content-center text-center">
+          <div class="icon-circle-box d-flex align-items-center justify-content-center">
+            <i class="fa-solid fa-building-columns fs-4 text-primary"></i>
+          </div>
+          <div class="investment-title">
+            Deposit 500.000 USD Cash in Turkish Banks
+          </div>
+          <div class="condition-text">
+            * with a condition not to withdraw for 3 years
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="card card-investment d-flex flex-column align-items-center justify-content-center text-center">
+          <div class="icon-circle-box d-flex align-items-center justify-content-center">
+            <i class="fa-solid fa-file-invoice-dollar fs-4 text-primary"></i>
+          </div>
+          <div class="investment-title">
+            Buy Government Bonds Worth 500.000 USD
+          </div>
+          <div class="condition-text">
+            * with a condition not to sell for 3 years
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="card card-investment d-flex flex-column align-items-center justify-content-center text-center">
+          <div class="icon-circle-box d-flex align-items-center justify-content-center">
+            <i class="fa-solid fa-chart-line fs-4 text-primary"></i>
+          </div>
+          <div class="investment-title">
+            Buy Shares Worth 500.000 USD in Turkish REITs or VCTs
+          </div>
+          <div class="condition-text">
+            * with a condition not to sell for 3 years
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="card card-investment d-flex flex-column align-items-center justify-content-center text-center">
+          <div class="icon-circle-box d-flex align-items-center justify-content-center">
+            <i class="fa-solid fa-briefcase fs-4 text-primary"></i>
+          </div>
+          <div class="investment-title">
+            Make 500.000 USD Fixed-Asset Investment
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="card card-investment d-flex flex-column align-items-center justify-content-center text-center">
+          <div class="icon-circle-box d-flex align-items-center justify-content-center">
+            <i class="fa-solid fa-users-gear fs-4 text-primary"></i>
+          </div>
+          <div class="investment-title">
+            Hire 50 Employees in Your Company
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Banner -->
+    <div class="row mt-5">
+      <div class="col-12 d-flex justify-content-center">
+        <img
+          src="images/6.png"
+          alt="Citizenship Investment Banner"
+          class="img-fluid rounded shadow-sm"
+          style="max-width:660px; height:207px; object-fit:cover;"
+        />
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<div class="timeline-container">
+
+  <div class="row mb-5">
+    <div class="col-12 border-bottom border-primary border-2 pb-2">
+      <h2 class="fw-bold m-0 text-dark">WHY TURKISH PASSPORT</h2>
+    </div>
+    <div class="col-12 mt-4">
+      <h5 class="text-primary fw-bold">WE WILL BE HAPPY TO ASSIST YOU OBTAIN A TURKISH PASSPORT WHEN YOU PURCHASE A PROPERTY IN TURKEY.</h5>
+      <p class="text-secondary small">The Benefits Of Owning a Turkish Passport Are;</p>
+    </div>
+  </div>
+
+  <div class="position-relative">
+    <div class="timeline-line"></div>
+
+    <div class="row g-0 align-items-center timeline-row">
+      <div class="col-md-6 d-flex justify-content-end pe-md-5">
+        <div class="content-box text-end">
+          <p>It also has one of the highest GDP rates per capita when compared to other countries that offer citizenship by investment.</p>
+        </div>
+      </div>
+      <div class="col-md-6"></div>
+    </div>
+
+    <div class="row g-0 align-items-center timeline-row">
+      <div class="col-md-6"></div>
+      <div class="col-md-6 d-flex justify-content-start ps-md-5">
+        <div class="content-box text-start">
+          <p>Stunning landscapes which drew over 50 million people to its beaches and cities in 2019.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-0 align-items-center timeline-row">
+      <div class="col-md-6 d-flex justify-content-end pe-md-5">
+        <div class="content-box text-end">
+          <p>Dual Citizenship permitted.</p>
+        </div>
+      </div>
+      <div class="col-md-6"></div>
+    </div>
+
+    <div class="row g-0 align-items-center timeline-row">
+      <div class="col-md-6"></div>
+      <div class="col-md-6 d-flex justify-content-start ps-md-5">
+        <div class="content-box text-start">
+          <p>No need to declare your wealth.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-0 align-items-center timeline-row">
+      <div class="col-md-6 d-flex justify-content-end pe-md-5">
+        <div class="content-box text-end">
+          <p>Full free medical assistance for life, for all family members.</p>
+        </div>
+      </div>
+      <div class="col-md-6"></div>
+    </div>
+
+    <div class="row g-0 align-items-center timeline-row">
+      <div class="col-md-6"></div>
+      <div class="col-md-6 d-flex justify-content-start ps-md-5">
+        <div class="content-box text-start">
+          <p>Quality of life with Turkish Culture.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-0 align-items-center timeline-row">
+      <div class="col-md-6 d-flex justify-content-end pe-md-5">
+        <div class="content-box text-end">
+          <p>You will be able to entre more than 121 countries without visa.</p>
+        </div>
+      </div>
+      <div class="col-md-6"></div>
+    </div>
+
+    <div class="row g-0 align-items-center timeline-row">
+      <div class="col-md-6"></div>
+      <div class="col-md-6 d-flex justify-content-start ps-md-5">
+        <div class="content-box text-start">
+          <p>Pension programs include.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-0 align-items-center timeline-row">
+      <div class="col-md-6 d-flex justify-content-end pe-md-5">
+        <div class="content-box text-end">
+          <p>You and all of your dependents will obtain Turkish citizenship.</p>
+        </div>
+      </div>
+      <div class="col-md-6"></div>
+    </div>
+
+    <div class="row g-0 align-items-center timeline-row">
+      <div class="col-md-6"></div>
+      <div class="col-md-6 d-flex justify-content-start ps-md-5">
+        <div class="content-box text-start">
+          <p>Free education and university reimbursement plans.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-0 align-items-center timeline-row">
+      <div class="col-md-6 d-flex justify-content-end pe-md-5">
+        <div class="content-box text-end">
+          <p>A young ambitious population.</p>
+        </div>
+      </div>
+      <div class="col-md-6"></div>
+    </div>
+
+    <div class="row g-0 align-items-center timeline-row">
+      <div class="col-md-6"></div>
+      <div class="col-md-6 d-flex justify-content-start ps-md-5">
+        <div class="content-box text-start">
+          <p>Turkey's Inheritance Law fully protects your legal heirs.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="custom-container">
+    <div class="row mb-3">
+        <div class="col-12">
+            <h2 class="section-title">MAIN STEPS FOR TURKISH CITIZENSHIP BY INVESTMENT</h2>
+        </div>
+    </div>
+
+    <div class="row g-4"> 
+        
+        <div class="col-md-6">
+            <div class="card card-step">
+                <div class="icon-box"><i class="fa-solid fa-calculator"></i></div>
+                <h6 class="step-title">GETTING A TAX NUMBER</h6>
+                <p class="step-desc">Getting a tax number is the first step to starting your application. We will go to the tax office with your original passport and obtain your tax number in 15 minutes.</p>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card card-step">
+                <div class="icon-box"><i class="fa-solid fa-building-columns"></i></div>
+                <h6 class="step-title">OPENING A BANK ACCOUNT</h6>
+                <p class="step-desc">Opening a Turkish bank account in your name. Original passport and photos are required. You will also need a utility bill which shows your current address in your country.</p>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card card-step">
+                <div class="icon-box"><i class="fa-solid fa-house-chimney"></i></div>
+                <h6 class="step-title">FIND AND PURCHASE THE PROPERTY</h6>
+                <p class="step-desc">Purchasing the property which will be worth a minimum of 400.000 USD and proof of payment by your bank. Habitation licence granted and suitable for valuation.</p>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card card-step">
+                <div class="icon-box"><i class="fa-solid fa-file-circle-check"></i></div>
+                <h6 class="step-title">CERTIFICATE OF CONFORMITY</h6>
+                <p class="step-desc">The value of the property will be determined by an official valuation survey done by the Ministry of Environment and Urbanization. The value of the property must be at least 400.000 USD in the valuation report.</p>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card card-step">
+                <div class="icon-box"><i class="fa-solid fa-id-card"></i></div>
+                <h6 class="step-title">RESIDENCE PERMIT APPLICATION</h6>
+                <p class="step-desc">You are required to have a valid resident permit before the citizenship application. You will apply to Directorate General of Migration Management. Only the investor is obliged to obtain the permit, not the whole family.</p>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card card-step">
+                <div class="icon-box"><i class="fa-solid fa-file-signature"></i></div>
+                <h6 class="step-title">TURKISH CITIZENSHIP APPLICATION</h6>
+                <p class="step-desc">All your documents are now ready to make an application for Turkish Citizenship. We make sure your application is sent to the Ministry of Interior Directorate General Of Immigration Management in Ankara. Your application should be completed between 45 to 60 days.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-12 text-center">
+            <img src="images/6.png" alt="3 Years Ownership Period" class="footer-img shadow-sm">
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+</body>
+</html>

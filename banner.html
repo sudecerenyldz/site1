@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Property Search</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      
+      .ust-ana-alan {
+        max-width: 1450px;
+        height: 550px;
+        border-radius: 40px;
+        background-image:
+          linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
+          url("https://images.pexels.com/photos/9690304/pexels-photo-9690304.jpeg");
+        background-size: cover;
+        background-position: center;
+        box-shadow: 0 15px 45px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+        max-width: 96%; 
+        margin: 0 auto; 
+      }
+
+      .sol-mavi-panel {
+        width: 400px;
+
+        background: rgba(13, 13, 53, 0.4);
+
+        backdrop-filter: blur(2px);
+        -webkit-backdrop-filter: blur(4px);
+      }
+
+      .form-ic-kapsayici {
+        width: 350px;
+      }
+
+      .find-btn {
+        background: #ffc107;
+        color: #0d0d35;
+        border-radius: 12px;
+        font-weight: 800;
+      }
+
+      
+      .slider-track {
+        height: 6px;
+        background: #007bff;
+        border-radius: 10px;
+        position: relative;
+      }
+
+      .range-min,
+      .range-max {
+        position: absolute;
+        top: -6px;
+        width: 100%;
+        pointer-events: none;
+        background: none;
+      }
+
+      .range-min::-webkit-slider-thumb,
+      .range-max::-webkit-slider-thumb {
+        pointer-events: auto;
+        appearance: none;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: #fff;
+        border: 3px solid #007bff;
+        cursor: pointer;
+      }
+
+      .slider-track::before {
+        content: "";
+        position: absolute;
+        height: 6px;
+        background: #fff;
+        left: var(--left);
+        right: var(--right);
+        border-radius: 10px;
+      }
+
+      .range-min::-webkit-slider-runnable-track,
+      .range-max::-webkit-slider-runnable-track {
+        background: transparent;
+      }
+
+      .range-min::-moz-range-track,
+      .range-max::-moz-range-track {
+        background: transparent;
+      }
+
+      .form-select,
+      .form-control {
+        border-radius: 6px !important;
+        border: none !important;
+        padding: 10px 15px !important;
+        height: auto !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+        font-size: 0.9rem !important;
+      }
+
+      
+      .form-select:focus,
+      .form-control:focus {
+        box-shadow: 0 0 0 2px rgba(255, 193, 7, 0.5) !important;
+        outline: none !important;
+      }
+    </style>
+  </head>
+
+  <body class="bg-light">
+    <div class="container-fluid px-1 mt-4">
+      <div class="ust-ana-alan mx-auto d-flex">
+        <!-- SOL PANEL -->
+        <div
+          class="sol-mavi-panel d-flex align-items-center justify-content-center"
+        >
+          <div class="form-ic-kapsayici text-white">
+            <h2 class="fw-bold mb-1">Find Your Ideal</h2>
+            <p class="opacity-75 mb-3">Home & Investment</p>
+
+            <div class="form-check mb-1">
+              <input class="form-check-input" type="checkbox" />
+              <label class="form-check-label small">New Build Only</label>
+            </div>
+
+            <div class="form-check mb-1">
+              <input class="form-check-input" type="checkbox" />
+              <label class="form-check-label small">Resale Only</label>
+            </div>
+
+            <div class="form-check mb-1">
+              <input class="form-check-input" type="checkbox" />
+              <label class="form-check-label small">Custom Build Only</label>
+            </div>
+
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" />
+              <label class="form-check-label small text-warning fw-semibold">
+                Only show listings with A Video Tour
+              </label>
+            </div>
+
+            <select class="form-select form-select-sm rounded-pill mb-2">
+              <option>Select City</option>
+            </select>
+
+            <select class="form-select form-select-sm rounded-pill mb-2">
+              <option>Select Type</option>
+            </select>
+
+            <select class="form-select form-select-sm rounded-pill mb-2">
+              <option>No min beds</option>
+            </select>
+
+            <input
+              type="text"
+              class="form-control form-control-sm rounded-pill mb-3"
+              placeholder="Project Name"
+            />
+
+            <!-- PRICE RANGE -->
+            <div class="small fw-semibold mb-1">
+              Price range : € 110,000 - € 470,000
+            </div>
+
+            <div class="d-flex justify-content-between small fw-semibold mb-1">
+              <span id="minVal">€110,000</span>
+              <span id="maxVal">€470,000</span>
+            </div>
+
+            <div class="slider-track mb-3 position-relative">
+              <input
+                type="range"
+                class="form-range range-min"
+                min="110000"
+                max="470000"
+                step="1000"
+                value="110000"
+              />
+              <input
+                type="range"
+                class="form-range range-max"
+                min="110000"
+                max="470000"
+                step="1000"
+                value="470000"
+              />
+            </div>
+
+            <button class="btn find-btn w-100 py-2">Find Properties</button>
+          </div>
+        </div>
+
+        <!-- SAĞ BAŞLIK -->
+        <div
+          class="flex-fill d-flex align-items-center justify-content-center text-center"
+        >
+          <h1 class="text-white fw-bold display-4 px-4">
+            Citizenship Types in Turkey
+          </h1>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const minRange = document.querySelector(".range-min");
+      const maxRange = document.querySelector(".range-max");
+      const minVal = document.getElementById("minVal");
+      const maxVal = document.getElementById("maxVal");
+      const track = document.querySelector(".slider-track");
+
+      const minLimit = 110000;
+      const maxLimit = 470000;
+      const gap = 1000;
+
+      function updateSlider() {
+        let min = parseInt(minRange.value);
+        let max = parseInt(maxRange.value);
+
+        if (max - min <= gap) {
+          if (this === minRange) minRange.value = max - gap;
+          else maxRange.value = min + gap;
+        }
+
+        minVal.textContent = "€" + min.toLocaleString();
+        maxVal.textContent = "€" + max.toLocaleString();
+
+        let left = ((min - minLimit) / (maxLimit - minLimit)) * 100;
+        let right = 100 - ((max - minLimit) / (maxLimit - minLimit)) * 100;
+
+        track.style.setProperty("--left", left + "%");
+        track.style.setProperty("--right", right + "%");
+      }
+
+      minRange.addEventListener("input", updateSlider);
+      maxRange.addEventListener("input", updateSlider);
+      updateSlider();
+    </script>
+  </body>
+</html>
