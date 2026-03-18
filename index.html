@@ -163,12 +163,18 @@
                     <div class="form-check mb-3"><input class="form-check-input" type="checkbox"><label class="form-check-label small text-warning fw-semibold">Only show listings with A Video Tour</label></div>
                     <select class="form-select form-select-sm rounded-pill mb-2"><option>Select City</option></select>
                     <select class="form-select form-select-sm rounded-pill mb-2"><option>Select Type</option></select>
+                   <select class="form-select form-select-sm rounded-pill mb-2">
+  <option>No min beds</option>
+</select>
                     <input type="text" class="form-control form-control-sm rounded-pill mb-3" placeholder="Project Name">
-                    <div class="small fw-semibold mb-1">Price range : € 110,000 - € 470,000</div>
-                    <div class="slider-track mb-3 position-relative">
-                        <input type="range" class="range-min" min="110000" max="470000" value="110000">
-                        <input type="range" class="range-max" min="110000" max="470000" value="470000">
-                    </div>
+                   <div class="small fw-semibold mb-1">
+Price range : <span id="price-display"></span>
+</div>
+
+<div class="slider-track mb-4">
+<input type="range" class="range-min" min="110000" max="470000" value="110000">
+<input type="range" class="range-max" min="110000" max="470000" value="470000">
+</div>
                     <button class="btn btn-warning w-100 py-2 fw-bold" style="border-radius:12px; color:#0d0d35;">Find Properties</button>
                 </div>
             </div>
@@ -552,23 +558,41 @@
         </div>
     </div>
 
-    <script>
-        // SLIDER FONKSİYONU
-        const minRange = document.querySelector(".range-min");
-        const maxRange = document.querySelector(".range-max");
-        const track = document.querySelector(".slider-track");
+<script>
 
-        function updateSlider() {
-            let min = parseInt(minRange.value);
-            let max = parseInt(maxRange.value);
-            let left = ((min - 110000) / (470000 - 110000)) * 100;
-            let right = 100 - ((max - 110000) / (470000 - 110000)) * 100;
-            track.style.setProperty("--left", left + "%");
-            track.style.setProperty("--right", right + "%");
-        }
-        minRange.addEventListener("input", updateSlider);
-        maxRange.addEventListener("input", updateSlider);
-        updateSlider();
-    </script>
+const minRange = document.querySelector(".range-min");
+const maxRange = document.querySelector(".range-max");
+const priceDisplay = document.getElementById("price-display");
+const track = document.querySelector(".slider-track");
+
+const minLimit = 110000;
+const maxLimit = 470000;
+const gap = 10000;
+
+function updateSlider(){
+let min = parseInt(minRange.value);
+let max = parseInt(maxRange.value);
+
+if (max - min <= gap) {
+if (this === minRange) minRange.value = max - gap;
+else maxRange.value = min + gap;
+min = minRange.value;
+max = maxRange.value;
+}
+
+priceDisplay.textContent = `€ ${min.toLocaleString()} - € ${max.toLocaleString()}`;
+
+let left = ((min - minLimit) / (maxLimit - minLimit)) * 100;
+let right = 100 - ((max - minLimit) / (maxLimit - minLimit)) * 100;
+
+track.style.setProperty("--left", left + "%");
+track.style.setProperty("--right", right + "%");
+}
+
+minRange.addEventListener("input", updateSlider);
+maxRange.addEventListener("input", updateSlider);
+updateSlider();
+
+</script>
 </body>
 </html>
